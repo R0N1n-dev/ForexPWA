@@ -22,7 +22,7 @@
         </div>
         <v-alert type="success" v-if="result !== ''" class="mx-auto mt-4" style="max-width: 80vw">{{ number }} {{
           convertFrom }} =
-          {{ result.result.toLocaleString("en-US") }} {{ convertTo }}</v-alert>
+          {{ result.result.toLocaleString("en-US",{ timezone: "UTC" } ) }} {{ convertTo }}</v-alert>
       </v-col>
       <v-col v-if="rates !== null">
         <CurrentRate :rates="rates" />
