@@ -51,11 +51,15 @@
           class="mx-auto mt-4 text-h4 font-weight-bold"
           style="max-width: 80vw"
           >{{ number }} {{ convertFrom }} =
-          {{ result.conversion_result.toLocaleString('en-US', { timezone: 'UTC' }) }}
+          {{
+            result.conversion_result.toLocaleString("en-US", {
+              timezone: "UTC",
+            })
+          }}
           {{ convertTo }}</v-alert
         >
       </v-col>
-      <v-col v-if="rates !== null">
+      <v-col cols="12" v-if="rates !== null">
         <CurrentRate :rates="rates" />
       </v-col>
     </v-row>
@@ -63,14 +67,14 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data: () => ({
-    number: '',
-    items: ['EUR', 'GBP', 'USD', 'UGX'],
-    convertFrom: '',
-    convertTo: '',
-    result: '',
+    number: "",
+    items: ["EUR", "GBP", "USD", "UGX"],
+    convertFrom: "",
+    convertTo: "",
+    result: "",
     emptyInput: false,
     rates: null,
   }),
@@ -86,17 +90,17 @@ export default {
       }
     },
     async getRates() {
-      await axios(`https://api.exchangerate.host/latest?base=USD`).then(
-        (response) => {
-          this.rates = response.data;
-          console.log(this.rates);
-        }
-      );
+      await axios(
+        `https://v6.exchangerate-api.com/v6/94fd24a90566726d54872c52/latest/USD`
+      ).then((response) => {
+        this.rates = response.data;
+        console.log(this.rates);
+      });
     },
   },
-  created() {
-    //this.getRates();
-  },
+  /*mounted() {
+    this.getRates();
+  },*/
 };
 </script>
 
